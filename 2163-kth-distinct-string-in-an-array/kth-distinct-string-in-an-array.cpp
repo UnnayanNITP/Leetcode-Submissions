@@ -1,29 +1,39 @@
-
-
 class Solution {
 public:
     string kthDistinct(vector<string>& arr, int k) {
-        unordered_map<string, int> countMap;
+        // 
         
-        // Count the occurrences of each string in the array
-        for (const auto& str : arr) {
-            countMap[str]++;
+        unordered_map<string,int> m;
+        vector<string> v;
+        // for(int i=0;i<arr.size();i++)
+        // {
+        //     if(m.find(arr[i])==m.end())
+        //     {
+        //         m[arr[i]]=1;
+                
+        //     }
+        //     else if(m.find(arr[i])!=m.end())
+        //     m[arr[i]]++;
+        // }
+        for (int i=0;i<arr.size();i++)
+        {
+            m[arr[i]]++;
         }
-
-        // Find the k-th distinct string
-        int distinctCount = 0;
-        for (const auto& str : arr) {
-            if (countMap[str] == 1) {
-                distinctCount++;
-                if (distinctCount == k) {
-                    return str;
-                }
-            }
+        // for(auto it=m.begin();it!=m.end();it++)
+        // {
+        //     if(it->second == 1)
+        //     {
+        //         v.push_back(it->first);
+        //     }
+        // }
+        for(int i=0;i<arr.size();i++)
+        {
+            if(m[arr[i]]==1)
+            v.push_back(arr[i]);
         }
-        
-        // If there are fewer than k distinct strings, return an empty string
+        if(v.size()>=k)
+        return v[k-1];
+        else
         return "";
     }
 };
-
-
